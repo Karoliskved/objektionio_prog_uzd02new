@@ -6,4 +6,4 @@
 
 -Leidžia vartotojui vesti pažymius nenurodžius pažymių skaičiaus.
 
--Šitoje programos versijoje naudojami arrays duomenų saugojimui.
+-Šitoje programos versijoje naudojami vectors duomenų saugojimui.

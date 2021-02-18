@@ -4,6 +4,6 @@ Leidžia vartotojui įrašyti mokiniu vardus, pavardes, pažymių skaičių, pa�
 
 -Leidžia pažymių skaičių, pažymius ir egzamino rezultatus generuoti atsitiktinai.
 
--Leidžia vartotojui vesti pažymius nenurodžius pažymių skaičius.
+-Leidžia vartotojui vesti pažymius nenurodžius pažymių skaičiaus.
 
 -Šitoje programos versijoje naudojami arrays duomenų saugojimui.

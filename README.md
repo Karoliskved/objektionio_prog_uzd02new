@@ -18,4 +18,5 @@ v0.2 NAUJOS FUNKCIJOS:
 - Skaito iš dokumento studentai10000.txt
 - rezultatai saugomi tekstiniame dokumente rezultatas.txt
 - rezultatai surušiuoti pagal pavardes
+- 
 $ git push --delete origin v0.2

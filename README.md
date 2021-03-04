@@ -12,4 +12,9 @@ Veikimas:
 - vartotojas atsako ar žino kiek yra pažymių ir ar nori atsitiktinai pažymius generuoti
 - Pagal varotojo atsakymus pažymiai sugeneruojami arba vartotojas ranka juos įveda
 - vartotojas pasirenka ar nori matyti pažymių mediana
-- Pagal varotojo pasirenkima terminale rodoma mokinių vardas, pavardė, vidurkis ir mediana
+
+v0.2 NAUJOS FUNKCIJOS:
+- Nauja funkcija leidžianti vertotojui atlikti duomenų skaitymą iš tekstinio dokumento
+- Skaito iš dokumento studentai10000.txt
+- rezultatai saugomi tekstiniame dokumente rezultatas.txt
+- rezultatai surušiuoti pagal pavardes

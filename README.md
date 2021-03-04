@@ -13,4 +13,4 @@ Veikimas:
 - Pagal varotojo atsakymus pažymiai sugeneruojami arba vartotojas ranka juos įveda
 - vartotojas pasirenka ar nori matyti pažymių mediana
 - Pagal varotojo pasirenkima terminale rodoma mokinių vardas, pavardė, vidurkis ir mediana
-$ git tag -d <v0.2>
+

@@ -7,3 +7,9 @@
 -Leidžia vartotojui vesti pažymius nenurodžius pažymių skaičiaus.
 
 -Šitoje programos versijoje naudojami vectors duomenų saugojimui.
+
+Veikimas:
+- vartotojas atsako ar žino kiek yra pažymių ir ar nori atsitiktinai pažymius generuoti
+- Pagal varotojo atsakymus pažymiai sugeneruojami arba vartotojas ranka juos įveda
+- vartotojas pasirenka ar nori matyti pažymių mediana
+- Pagal varotojo pasirenkima terminale rodoma mokinių vardas, pavardė, vidurkis ir mediana

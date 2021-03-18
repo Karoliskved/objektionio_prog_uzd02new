@@ -31,3 +31,5 @@ v0.4 Nauji pakeitimai:
 - Pradinius failus galima generuoti
 - Vartotojas gali pasirinkti kokį failą nori nuskaityti nuskaityti
 - Sekamas programos vykdymo laikas
+- rezultatai skirstomi į du failus pagal mokinio vidurkį (daugiau ar mažiau už 5)
+

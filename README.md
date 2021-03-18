@@ -24,5 +24,5 @@ v0.2 Nauji pakeitimai:
 
 v0.3 Nauji pakeitimai:
 
--jeigu nėra duomenų įvedimo failo išmetama klaida
--funkcijos perkeltos į atskirą failą funkcijos.cpp
+- jeigu nėra duomenų įvedimo failo išmetama klaida
+- funkcijos perkeltos į atskirą failą funkcijos.cpp

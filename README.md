@@ -26,3 +26,8 @@ v0.3 Nauji pakeitimai:
 
 - jeigu nėra duomenų įvedimo failo išmetama klaida
 - funkcijos perkeltos į atskirą failą funkcijos.cpp
+
+v0.4 Nauji pakeitimai:
+- Pradinius failus galima generuoti
+- Vartotojas gali pasirinkti kokį failą nori nuskaityti nuskaityti
+- Sekamas programos vykdymo laikas

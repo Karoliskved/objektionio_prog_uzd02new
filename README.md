@@ -36,3 +36,4 @@ v0.4 Nauji pakeitimai:
 
 v0.5 Nauji pakeitimai:
 - Užduotis padaryta trim skirtingais būdais (vector, list, deque)
+- Testavimo sistemos parametrai (CPU i7-9750h, RAM 16 GB, NVME SSD)

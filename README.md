@@ -39,12 +39,15 @@ v0.5 Nauji pakeitimai:
 - Testavimo sistemos parametrai (CPU i7-9750h, RAM 16 GB, NVME SSD)
 
 Deque laikas:
+
 ![deque](https://user-images.githubusercontent.com/79286725/114936604-4dcacb00-9e45-11eb-904c-e7847d8b199b.png)
 
 Vector laikas:
+
 ![vector](https://user-images.githubusercontent.com/79286725/114936662-633ff500-9e45-11eb-8397-adc88199e18f.png)
 
 List laikas:
+
 ![list](https://user-images.githubusercontent.com/79286725/114936703-6f2bb700-9e45-11eb-9754-692609a352d1.png)
 
 

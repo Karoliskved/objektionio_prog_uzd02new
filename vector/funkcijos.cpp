@@ -95,6 +95,7 @@ void vid(vector<studentas> &A)
             A[i].vidurkis = sum / A[i].nd.size();
     }
 }
+
 void fin(vector<studentas> &A)
 {
     for (int i = 0; i < A.size(); i++)
@@ -102,7 +103,11 @@ void fin(vector<studentas> &A)
         A[i].final = round(A[i].vidurkis * 0.4 + 0.6 * A[i].egz);
     }
 }
-void med(vector<studentas> &A)
+bool isgood(const studentas &A){
+    return A.final>=5;
+}
+
+/*void med(vector<studentas> &A)
 {
     for (int i = 0; i < A.size(); i++)
     {
@@ -118,23 +123,46 @@ void med(vector<studentas> &A)
             }
         
     }
-}
-void skirs(vector<studentas> &A, vector<studentas> &B, vector<studentas> &C, std::chrono::duration<double> &runtime)
+}*/
+void skirs(vector<studentas> &A, vector<studentas> &B,  std::chrono::duration<double> &runtime)
 {
     auto start = std::chrono::high_resolution_clock::now();
-    for (int i = 0; i < A.size(); i++)
+    
+   /* for(int i=0; i<A.size(); i++)
     {
         if (A[i].final >= 5)
         {
             B.push_back(A[i]);
+            A.erase(A.begin()+i);
+            i--;
         }
-        if (A[i].final < 5)
-        {
-            C.push_back(A[i]);
-        }
-       
-    }
-     A.clear();
+    }*/
+
+    vector<studentas>::iterator bound;  
+  bound = stable_partition (A.begin(), A.end(), isgood);  
+    
+   // cout << "daug uz 5:";  
+  for (vector<studentas>::iterator it=A.begin(); it!=bound; ++it)  
+  {
+     // cout << ' ' << it->final;  
+      B.push_back(*it);
+  }
+    
+  //cout << '\n';  
+  
+  //cout << "maz uz 5";  
+  int i=0;
+  for (vector<studentas>::iterator it=bound; it!=A.end(); ++it)  
+  {
+      //cout << ' ' << it->final;  
+      A[i]=*it;
+      i++;
+  }
+    A.resize(i);
+   // cout << A.size() << endl;
+  //cout << '\n';  
+
+   
     
     std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now() - start; 
     runtime+=diff;

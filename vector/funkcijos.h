@@ -29,6 +29,7 @@ using std::ofstream;
 using std::getline;
 using std::to_string;
 using std::exception;
+using std::partition;
 
 
 struct studentas
@@ -54,7 +55,7 @@ bool SortByPav(const studentas &A, const studentas &B);
 void rikiavimas(vector<studentas> &A);
 void vid( vector<studentas> &A);
 void med( vector<studentas> &A);
-void skirs(vector<studentas> &A, vector<studentas> &B, vector<studentas> &C, std::chrono::duration<double> &runtime);
+void skirs(vector<studentas> &A, vector<studentas> &B,  std::chrono::duration<double> &runtime);
 void rez(vector<studentas> &A,vector<studentas> &B, std::chrono::duration<double> &runtime);
 
 

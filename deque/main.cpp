@@ -21,7 +21,7 @@ int main()
     vid(Stud);
     //med(Stud);
     fin(Stud);
-    skirs(Stud, ger, blog, runtime);
-    rez(ger, blog, runtime);
+    skirs(Stud, ger, runtime);
+    rez(ger, Stud, runtime);
     
 }

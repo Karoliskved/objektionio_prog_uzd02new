@@ -1,13 +1,14 @@
 #include "funkcijos.h"
 
-void genfilename(int &n, string &fileName)
+void genfilename(int & n, string & fileName)
 {
     cout << "kokio dydzio failas" << endl;
     cin >> n;
     string s = to_string(n);
     fileName = "studentai" + s + ".txt";
+    
 }
-void failoived(list<studentas> &A, string fileName, std::chrono::duration<double> &runtime)
+void failoived(deque<studentas> &A, string fileName, std::chrono::duration<double> &runtime)
 {
     ifstream open_f;
     try
@@ -24,16 +25,17 @@ void failoived(list<studentas> &A, string fileName, std::chrono::duration<double
 
     stringstream buffer;
     string eil, output = "", laik, laik1;
-    list<string> eilvec;
+    deque<string> eilvec;
     int i = 0;
 
     auto start = std::chrono::high_resolution_clock::now();
     auto st = start;
 
     buffer << open_f.rdbuf();
+   
 
     getline(buffer, eil);
-
+    
     while (getline(buffer, eil))
     {
         studentas B;
@@ -56,8 +58,8 @@ void failoived(list<studentas> &A, string fileName, std::chrono::duration<double
     }
 
     open_f.close();
-    std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now() - start;
-    runtime += diff;
+    std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now() - start; 
+    runtime+=diff;
     std::cout << "nuskaitymas uztruko " << diff.count() << " s\n";
 }
 
@@ -75,70 +77,54 @@ bool SortByPav(const studentas &A, const studentas &B)
     return A.pav < B.pav;
 }
 
-void rikiavimas(list<studentas> &A)
+void rikiavimas(deque<studentas> &A)
 {
-    A.sort(SortByPav);
+    sort(A.begin(), A.end(), SortByPav);
 }
-void vid(list<studentas> &A)
+void vid(deque<studentas> &A)
 {
     double sum;
-    list<studentas>::iterator it;
-    list<double>::iterator it1;
-    for (it = A.begin(); it != A.end(); ++it)
+    for (int i = 0; i < A.size(); i++)
     {
         sum = 0;
-        for (it1 = it->nd.begin(); it1 != it->nd.end(); ++it1)
+        for (int j = 0; j < A[i].nd.size(); j++)
         {
-            sum = sum + *it1;
+            sum = sum + A[i].nd[j];
         }
-        if (it->nd.size() != 0)
-            it->vidurkis = sum / it->nd.size();
+        if (A[i].nd.size() != 0)
+            A[i].vidurkis = sum / A[i].nd.size();
     }
 }
-void fin(list<studentas> &A)
+void fin(deque<studentas> &A)
 {
-    list<studentas>::iterator it;
-    for (it = A.begin(); it != A.end(); ++it)
+    for (int i = 0; i < A.size(); i++)
     {
-        it->final = round(it->vidurkis * 0.4 + 0.6 * it->egz);
+        A[i].final = round(A[i].vidurkis * 0.4 + 0.6 * A[i].egz);
     }
 }
-/*void med(list<studentas> &A)
+void med(deque<studentas> &A)
 {
-    list<studentas>::iterator it;
-    list<double>::iterator it1;
-
-    for (it = A.begin(); it != A.end(); ++it)
+    for (int i = 0; i < A.size(); i++)
     {
-
-       // sort(it->nd.begin(), it->nd.end());
-        it->nd.sort();
-        if (it->nd.size() % 2 == 0) // sprendima kaip apskaiciuoti mediana list nariu radau cia: http://cplusplus.com/forum/beginner/196747/
-        {
-            it1 = it->nd.begin();
-            for (int i = 0; i < it->nd.size() / 2; i++)
+        
+            sort(A[i].nd.begin(), A[i].nd.end());
+            if (A[i].nd.size() % 2 == 0)
             {
-                it1++;
+                A[i].median = (A[i].nd[A[i].nd.size() / 2 - 1] + A[i].nd[A[i].nd.size() / 2]) / 2;
             }
-
-            it->median = ((double)*it1 + *--it1) / 2;
-        }
-        else
-        {
-            for (int i = 0; i < it->nd.size() / 2; i++)
+            else
             {
-                it1++;
+                A[i].median = A[i].nd[A[i].nd.size() / 2];
             }
-            it->median = *it1;
-        }
+        
     }
-}*/
+}
 bool isgood(const studentas &A){
     return A.final>=5;
 }
-
-void skirs(list<studentas> &A, list<studentas> &B,  std::chrono::duration<double> &runtime)
+void skirs(deque<studentas> &A, deque<studentas> &B, std::chrono::duration<double> &runtime)
 {
+
     auto start = std::chrono::high_resolution_clock::now();
     
    /* for(int i=0; i<A.size(); i++)
@@ -151,11 +137,11 @@ void skirs(list<studentas> &A, list<studentas> &B,  std::chrono::duration<double
         }
     }*/
 
-    list<studentas>::iterator bound;  
+    deque<studentas>::iterator bound;  
   bound = stable_partition (A.begin(), A.end(), isgood);  
     
    // cout << "daug uz 5:";  
-  for (list<studentas>::iterator it=A.begin(); it!=bound; ++it)  
+  for (deque<studentas>::iterator it=A.begin(); it!=bound; ++it)  
   {
      // cout << ' ' << it->final;  
       B.push_back(*it);
@@ -165,17 +151,14 @@ void skirs(list<studentas> &A, list<studentas> &B,  std::chrono::duration<double
   
   //cout << "maz uz 5";  
   int i=0;
-  list<studentas>::iterator it1=A.begin();
-  for (list<studentas>::iterator it=bound; it!=A.end(); ++it)  
+  for (deque<studentas>::iterator it=bound; it!=A.end(); ++it)  
   {
       //cout << ' ' << it->final;  
-      
-      *it1=*it;
+      A[i]=*it;
       i++;
-      ++it1;
   }
     A.resize(i);
-   //cout << A.size() << endl;
+   // cout << A.size() << endl;
   //cout << '\n';  
 
    
@@ -184,12 +167,9 @@ void skirs(list<studentas> &A, list<studentas> &B,  std::chrono::duration<double
     runtime+=diff;
     std::cout << "skirstymas i dvi grupes " << diff.count() << " s\n";
 
-
-
-    
 }
 
-void rez(list<studentas> &A, list<studentas> &B, std::chrono::duration<double> &runtime)
+void rez(deque<studentas> &A, deque<studentas> &B, std::chrono::duration<double> &runtime)
 {
     char answ;
     string outputgood = "", outputbad = "";
@@ -197,29 +177,28 @@ void rez(list<studentas> &A, list<studentas> &B, std::chrono::duration<double> &
     //cout << "ar norite gauti mediana y/n" << endl;
     //cin >> answ;
     auto start = std::chrono::high_resolution_clock::now();
-    // if (answ == 'y')
-    // {
-    list<studentas>::iterator it;
-    for (it = A.begin(); it != A.end(); ++it)
-    {
+   // if (answ == 'y')
+   // {
+        for (int i = 0; i < A.size(); i++)
+        {
 
-        string s = to_string(it->final);
-        //string s2 = to_string(it->median);
-        it->vard.resize(15, ' ');
-        it->pav.resize(15, ' ');
-        outputgood += it->vard + it->pav + s + " "  + "\n";
-    }
-    for (it = B.begin(); it != B.end(); ++it)
-    {
-        string s = to_string(it->final);
-        //string s2 = to_string(it->median);
-        it->vard.resize(15, ' ');
-        it->pav.resize(15, ' ');
-        outputbad += it->vard + it->pav + s + " " + "\n";
-    }
+            string s = to_string(A[i].final);
+            //string s2 = to_string(A[i].median);
+            A[i].vard.resize(15, ' ');
+            A[i].pav.resize(15, ' ');
+            outputgood += A[i].vard + A[i].pav + s + " " + "\n";
+        }
+        for (int i = 0; i < B.size(); i++)
+        {
+            string s = to_string(B[i].final);
+            //string s2 = to_string(B[i].median);
+            B[i].vard.resize(15, ' ');
+            B[i].pav.resize(15, ' ');
+            outputbad += B[i].vard + B[i].pav + s + " "  + "\n";
+        }
     //}
 
-    /* else
+   /* else
     {
         
         for (int i = 0; i < A.size(); i++)
@@ -246,8 +225,8 @@ void rez(list<studentas> &A, list<studentas> &B, std::chrono::duration<double> &
     ofstream out_fbad("rezultatasmazuz5.txt");
     out_fbad << outputbad;
     out_fbad.close();
-    std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now() - start;
-    runtime += diff;
+    std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now() - start; 
+    runtime+=diff;
     std::cout << "rezultato rasymas i faila " << diff.count() << " s\n";
     cout << "visas laikas " << runtime.count() << endl;
 }

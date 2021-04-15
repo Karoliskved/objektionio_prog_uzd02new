@@ -56,7 +56,7 @@ bool SortByPav(const studentas &A, const studentas &B);
 void rikiavimas(list<studentas> &A);
 void vid( list<studentas> &A);
 void med( list<studentas> &A);
-void skirs(list<studentas> &A, list<studentas> &B, list<studentas> &C, std::chrono::duration<double> &runtime);
+void skirs(list<studentas> &A, list<studentas> &B,  std::chrono::duration<double> &runtime);
 void rez(list<studentas> &A,list<studentas> &B, std::chrono::duration<double> &runtime);
 
 

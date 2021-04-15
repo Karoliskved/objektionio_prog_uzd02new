@@ -38,17 +38,31 @@ v0.5 Nauji pakeitimai:
 - Užduotis padaryta trim skirtingais būdais (vector, list, deque)
 - Testavimo sistemos parametrai (CPU i7-9750h, RAM 16 GB, NVME SSD)
 
-Deque laikas:
+Deque v0.5 laikas:
 
 ![deque](https://user-images.githubusercontent.com/79286725/114936604-4dcacb00-9e45-11eb-904c-e7847d8b199b.png)
 
-Vector laikas:
+Vector v0.5 laikas:
 
 ![vector](https://user-images.githubusercontent.com/79286725/114936662-633ff500-9e45-11eb-8397-adc88199e18f.png)
 
-List laikas:
+List v0.5 laikas:
 
 ![list](https://user-images.githubusercontent.com/79286725/114936703-6f2bb700-9e45-11eb-9754-692609a352d1.png)
 
+v1.0 Nauji pakeitimai:
+- Skirstymo funkcija padaryta naudojant tik du konteinerius ir funkciją partition
+
+Deque v1.0 laikas:
+
+![dequev2](https://user-images.githubusercontent.com/79286725/114937532-93d45e80-9e46-11eb-99f9-4e77ea30b4f4.png)
+
+Vector v1.0 laikas:
+
+![vectorv2](https://user-images.githubusercontent.com/79286725/114937623-b2d2f080-9e46-11eb-9ac1-938de381e45c.png)
+
+List v1.0 laikas:
+
+![listv2](https://user-images.githubusercontent.com/79286725/114937659-bb2b2b80-9e46-11eb-8d96-7054b7e2fc19.png)
 
 

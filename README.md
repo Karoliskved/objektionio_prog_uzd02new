@@ -1,4 +1,4 @@
-# objektionio_prog_uzd02
+# objektinio_prog_uzd02
 
 -Leidžia vartotojui įrašyti mokiniu vardus, pavardes, pažymių skaičių, pažymius, egazamino rezultatus.
 

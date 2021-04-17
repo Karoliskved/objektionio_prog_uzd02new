@@ -67,7 +67,7 @@ List v1.0 laikas:
 
 Skirstymo laiko (sekundėmis) palyginimas tarp  v0.5 ir v1.0 skirstant 10000000:
 
-| Versija  | Second Header | Second Header | Second Header |
+| Versija  | Deque | List | Vector |
 | ------------- | ------------- | ------------- | ------------- |
 | v0.5 | 30.9756  | 7.80584  | 3.13956 | 
 | v0.1 | 50.6058 | 9.07976  | 4.52007 |

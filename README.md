@@ -72,4 +72,16 @@ Skirstymo laiko (sekundėmis) palyginimas tarp  v0.5 ir v1.0 skirstant 10000000:
 | v0.5 | 30.9756  | 7.80584  | 3.13956 | 
 | v0.1 | 50.6058 | 9.07976  | 4.52007 |
 
+v1.1 Nauji pakeitimai:
+
+- Vietoj struct studentas realizuota naudojant class studentas
+
+Laiko palyginimas tarp v1.0 ir v1.1 naudojant skirtingus flag'us. Naudojamas vector konteineris 
+
+| flag  | v1.1 100000 | v1.1 1000000 | v1.0 100000 | v1.1 1000000 |
+| ------------- | ------------- | ------------- | ------------- |
+| -o1 | 0.453212  | 4.83038  | 0.444655 | 4.24298 |
+| -o2 | 0.466125 | 4.92706  | 0.431455 | 4.1415 |
+| -o3 | 0.483002 | 4.88965  | 0.428308| 4.2155|
+
 

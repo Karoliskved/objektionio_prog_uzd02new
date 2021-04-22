@@ -4,10 +4,11 @@
 
 int main()
 {
+    
     int studsk, n, failodyd;
     std::chrono::duration<double> runtime;
     string fileName;
-    deque<studentas> Stud, ger, blog;
+    deque<studentas> Stud, ger;
     srand(time(NULL));
     
     
@@ -23,5 +24,6 @@ int main()
     fin(Stud);
     skirs(Stud, ger, runtime);
     rez(ger, Stud, runtime);
+    
     
 }

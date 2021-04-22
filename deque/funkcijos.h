@@ -1,5 +1,5 @@
-#ifndef STDSHORTCUT_H_INCLUDED
-#define STDSHORTCUT_H_INCLUDED
+#ifndef FUNKICJOS_H_INCLUDED
+#define FUNKCIJOS_H_INCLUDED
 
 #include <iostream>
 #include <math.h>
@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <iomanip>
 #include <string>
-#include <vector>
+#include <deque>
 #include <random>
 #include <time.h>
 #include <algorithm>
@@ -21,7 +21,7 @@ using std::cout;
 using std::endl;
 using std::setw;
 using std::setprecision;
-using std::vector;
+using std::deque;
 using std::string;
 using std::sort;
 using std::stringstream;
@@ -30,34 +30,68 @@ using std::ofstream;
 using std::getline;
 using std::to_string;
 using std::exception;
+using std::partition;
 using std::deque;
 
 
-struct studentas
+class studentas
 {
+private:
+    string vard_, pav_;
+    deque<double> nd_;
+    double egz_, vidurkis_ = 0, median_ = 0;
+    double final_;
+    
+   
+public:
+studentas() : egz_(0) {}
+//inline string vard() const{return vard_;}
+//inline string pav() const{return pav_;}
+void setVard(string);
+void setPav(string);
+void setNd(double);
+void setEgz(double);
+void skVidurki();
+void skMedian();
+void skfinalsuvid();
+void skfinalsumed();
+void resizeVard(int);
+void resizePav(int);
+string getVard() const{
+    return vard_;
+}
+string getPav() const{
+    return pav_;
+}
+void popbackGrade(){
+    return nd_.pop_back();
+}
+double getFinal() const{
+    return final_;
+}
 
-    double egz, vidurkis = 0, median = 0;
-    int final;
-    deque<double> nd;
-    
-    string vard, pav;
-    
 };
-bool vedbudas();
-bool arfailagen();
+
+
+
+
+//bool vedbudas();
+//bool arfailagen();
 void genfilename(int & n, string & fileName);
-void failogen(string &fileName, int n, std::chrono::duration<double> &runtime);
+//void failogen(string &fileName, int n, std::chrono::duration<double> &runtime);
 void failoived(deque<studentas> &A, string  fileName, std::chrono::duration<double> &runtime);
-void duomenys(int &studsk, int &n, deque<studentas> &A);
-void fin(deque<studentas> &A);
-int generaten();
-int generaterez();
-bool SortByPav(const studentas &A, const studentas &B);
-void rikiavimas(deque<studentas> &A);
+//void duomenys(int &studsk, int &n, deque<studentas> &A);
 void vid( deque<studentas> &A);
 void med( deque<studentas> &A);
-void skirs(deque<studentas> &A, deque<studentas> &B, std::chrono::duration<double> &runtime);
+void fin(deque<studentas> &A);
+bool SortByPav(const studentas &A, const studentas &B);
+void rikiavimas(deque<studentas> &A);
+void skirs(deque<studentas> &A, deque<studentas> &B,  std::chrono::duration<double> &runtime);
 void rez(deque<studentas> &A,deque<studentas> &B, std::chrono::duration<double> &runtime);
+int generaten();
+int generaterez();
+
+
 
 
 #endif

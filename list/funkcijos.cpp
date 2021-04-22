@@ -1,5 +1,77 @@
 #include "funkcijos.h"
 
+//class studenat funkc
+
+void studentas::setVard(string vard)
+{
+    vard_ = vard;
+}
+void studentas::setPav(string pav)
+{
+    pav_ = pav;
+}
+void studentas::setNd(double nd)
+{
+    nd_.push_back(nd);
+}
+void studentas::setEgz(double egz)
+{
+    egz_ = egz;
+}
+void studentas::skVidurki()
+{
+    double sum = 0;
+    list<double>::iterator it1;
+    for (it1 = nd_.begin(); it1 != nd_.end(); ++it1)
+    {
+        sum = sum + *it1;
+    }
+    if (nd_.size() != 0)
+        vidurkis_ = sum / nd_.size();
+}
+void studentas::skMedian()
+{
+    nd_.sort();
+    list<double>::iterator it1;
+    
+    if (nd_.size() % 2 == 0)
+    {
+        it1 = nd_.begin();
+            for (int i = 0; i < nd_.size() / 2; i++)
+            {
+                it1++;
+            }
+        median_ = ((double)*it1 + *--it1) / 2;
+    }
+    else
+    {
+        for (int i = 0; i < nd_.size() / 2; i++)
+            {
+                it1++;
+            }
+        median_ = *it1;
+    }
+}
+void studentas::skfinalsuvid(){
+    final_ = vidurkis_ * 0.4 + 0.6 * egz_;
+    final_=std::ceil(final_ * 100 + 0.5)/100;
+}
+void studentas::skfinalsumed(){
+    final_ = vidurkis_ * 0.4 + 0.6 * median_;
+     final_=std::ceil(final_ * 100 + 0.5)/100;
+}
+void studentas::resizeVard(int size){
+    vard_.resize(size, ' ');
+}
+void studentas::resizePav(int size){
+    pav_.resize(size, ' ');
+}
+
+
+
+// likusios funkc.
+
+
 void genfilename(int &n, string &fileName)
 {
     cout << "kokio dydzio failas" << endl;
@@ -41,17 +113,17 @@ void failoived(list<studentas> &A, string fileName, std::chrono::duration<double
 
         ss >> laik >> laik1;
         //cout << laik << " " <<laik1<< " ";
-        B.vard = laik;
-        B.pav = laik1;
+        B.setVard(laik); 
+        B.setPav(laik1);
         int num;
         while (ss >> num)
         {
-            B.nd.push_back(num);
+            B.setNd(num);
             //cout << num << " ";
         }
-        B.egz = B.nd.back();
+        B.popbackGrade();
         //cout << B.egz << endl;
-        B.nd.pop_back();
+        B.setEgz(num);
         A.push_back(B);
     }
 
@@ -70,9 +142,10 @@ int generaterez()
 {
     return (rand() % 10 + 1);
 }
+
 bool SortByPav(const studentas &A, const studentas &B)
 {
-    return A.pav < B.pav;
+    return A.getPav() < B.getPav();
 }
 
 void rikiavimas(list<studentas> &A)
@@ -81,112 +154,70 @@ void rikiavimas(list<studentas> &A)
 }
 void vid(list<studentas> &A)
 {
-    double sum;
     list<studentas>::iterator it;
-    list<double>::iterator it1;
     for (it = A.begin(); it != A.end(); ++it)
     {
-        sum = 0;
-        for (it1 = it->nd.begin(); it1 != it->nd.end(); ++it1)
-        {
-            sum = sum + *it1;
-        }
-        if (it->nd.size() != 0)
-            it->vidurkis = sum / it->nd.size();
+        it->skVidurki();
+    }
+}
+void med(list<studentas> &A)
+{
+    list<studentas>::iterator it;
+    for (it = A.begin(); it != A.end(); ++it)
+    {
+            it->skMedian();
     }
 }
 void fin(list<studentas> &A)
 {
+    //char ats;
+
+    /*do
+    {
+        cout << "ar norite galutini bala skaiciuot su mediana iveskite m, jei su vidurkiu iveskite v" << endl;
+        cin >> ats;
+        if (ats = 'm')
+        {
+            med(A);
+            for (int i = 0; i < A.size(); i++)
+            {
+                A[i].skfinalsumed();
+            }
+        }
+        if (ats = 'v')
+        {*/
     list<studentas>::iterator it;
     for (it = A.begin(); it != A.end(); ++it)
     {
-        it->final = round(it->vidurkis * 0.4 + 0.6 * it->egz);
+        it->skfinalsuvid();
     }
+    /*}
+    } while (ats != 'm' && ats != 'v');*/
 }
-/*void med(list<studentas> &A)
+bool isgood(studentas &A)
 {
-    list<studentas>::iterator it;
-    list<double>::iterator it1;
-
-    for (it = A.begin(); it != A.end(); ++it)
-    {
-
-       // sort(it->nd.begin(), it->nd.end());
-        it->nd.sort();
-        if (it->nd.size() % 2 == 0) // sprendima kaip apskaiciuoti mediana list nariu radau cia: http://cplusplus.com/forum/beginner/196747/
-        {
-            it1 = it->nd.begin();
-            for (int i = 0; i < it->nd.size() / 2; i++)
-            {
-                it1++;
-            }
-
-            it->median = ((double)*it1 + *--it1) / 2;
-        }
-        else
-        {
-            for (int i = 0; i < it->nd.size() / 2; i++)
-            {
-                it1++;
-            }
-            it->median = *it1;
-        }
-    }
-}*/
-bool isgood(const studentas &A){
-    return A.final>=5;
+    return A.getFinal() < 5;
 }
 
-void skirs(list<studentas> &A, list<studentas> &B,  std::chrono::duration<double> &runtime)
+void skirs(list<studentas> &A, list<studentas> &B, std::chrono::duration<double> &runtime)
 {
     auto start = std::chrono::high_resolution_clock::now();
-    
-   /* for(int i=0; i<A.size(); i++)
+
+    list<studentas>::iterator bound;
+    bound = stable_partition(A.begin(), A.end(), isgood);
+    for (list<studentas>::iterator it = bound; it != A.end(); ++it)
     {
-        if (A[i].final >= 5)
-        {
-            B.push_back(A[i]);
-            A.erase(A.begin()+i);
-            i--;
-        }
-    }*/
 
-    list<studentas>::iterator bound;  
-  bound = stable_partition (A.begin(), A.end(), isgood);  
-    
-   // cout << "daug uz 5:";  
-  for (list<studentas>::iterator it=A.begin(); it!=bound; ++it)  
-  {
-     // cout << ' ' << it->final;  
-      B.push_back(*it);
-  }
-    
-  //cout << '\n';  
-  
-  //cout << "maz uz 5";  
-  int i=0;
-  list<studentas>::iterator it1=A.begin();
-  for (list<studentas>::iterator it=bound; it!=A.end(); ++it)  
-  {
-      //cout << ' ' << it->final;  
-      
-      *it1=*it;
-      i++;
-      ++it1;
-  }
-    A.resize(i);
-   //cout << A.size() << endl;
-  //cout << '\n';  
-
+        B.push_back(*it);
+    }
+    int index = std::distance(A.begin(), bound);
    
-    
-    std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now() - start; 
-    runtime+=diff;
+    A.resize(index);
+
+
+    std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now() - start;
+    runtime += diff;
     std::cout << "skirstymas i dvi grupes " << diff.count() << " s\n";
-
-
-
-    
 }
 
 void rez(list<studentas> &A, list<studentas> &B, std::chrono::duration<double> &runtime)
@@ -194,51 +225,28 @@ void rez(list<studentas> &A, list<studentas> &B, std::chrono::duration<double> &
     char answ;
     string outputgood = "", outputbad = "";
     double final;
-    //cout << "ar norite gauti mediana y/n" << endl;
-    //cin >> answ;
-    auto start = std::chrono::high_resolution_clock::now();
-    // if (answ == 'y')
-    // {
     list<studentas>::iterator it;
+    auto start = std::chrono::high_resolution_clock::now();
+
     for (it = A.begin(); it != A.end(); ++it)
     {
 
-        string s = to_string(it->final);
-        //string s2 = to_string(it->median);
-        it->vard.resize(15, ' ');
-        it->pav.resize(15, ' ');
-        outputgood += it->vard + it->pav + s + " "  + "\n";
+        string s = to_string(it->getFinal());
+        s.resize(4, ' ');
+
+       it->resizeVard(20);
+       it->resizePav(20);
+      
+        outputgood += it->getVard() + it->getPav() + s + ' ' + "\n";
     }
     for (it = B.begin(); it != B.end(); ++it)
     {
-        string s = to_string(it->final);
-        //string s2 = to_string(it->median);
-        it->vard.resize(15, ' ');
-        it->pav.resize(15, ' ');
-        outputbad += it->vard + it->pav + s + " " + "\n";
+        string s = to_string(it->getFinal());
+
+        it->resizeVard(20);
+        it->resizePav(20);
+        outputbad += it->getVard() + it->getPav() + s + ' ' + "\n";
     }
-    //}
-
-    /* else
-    {
-        
-        for (int i = 0; i < A.size(); i++)
-        {
-
-            string s = to_string(A[i].final);
-            A[i].vard.resize(15, ' ');
-            A[i].pav.resize(15, ' ');
-            outputgood += A[i].vard + A[i].pav + s + " " +"\n";
-        }
-        for (int i = 0; i < B.size(); i++)
-        {
-            string s = to_string(B[i].final);
-            B[i].vard.resize(15, ' ');
-            B[i].pav.resize(15, ' ');
-            outputbad += B[i].vard + B[i].pav + s + " " +  "\n";
-        }
-        
-    }*/
 
     ofstream out_fgood("rezultatasdauguz5.txt");
     out_fgood << outputgood;

@@ -4,10 +4,11 @@
 
 int main()
 {
+    
     int studsk, n, failodyd;
     std::chrono::duration<double> runtime;
     string fileName;
-    list<studentas> Stud, ger, blog;
+    list<studentas> Stud, ger;
     srand(time(NULL));
     
     
@@ -21,7 +22,8 @@ int main()
     vid(Stud);
     //med(Stud);
     fin(Stud);
-    skirs(Stud, ger,  runtime);
+    skirs(Stud, ger, runtime);
     rez(ger, Stud, runtime);
+    
     
 }

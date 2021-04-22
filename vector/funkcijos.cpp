@@ -1,12 +1,71 @@
 #include "funkcijos.h"
 
-void genfilename(int & n, string & fileName)
+//class studenat funkc
+
+void studentas::setVard(string vard)
+{
+    vard_ = vard;
+}
+void studentas::setPav(string pav)
+{
+    pav_ = pav;
+}
+void studentas::setNd(double nd)
+{
+    nd_.push_back(nd);
+}
+void studentas::setEgz(double egz)
+{
+    egz_ = egz;
+}
+void studentas::skVidurki()
+{
+    double sum = 0;
+    for (int j = 0; j < nd_.size(); j++)
+    {
+        sum = sum + nd_[j];
+    }
+    if (nd_.size() != 0)
+        vidurkis_ = sum / nd_.size();
+}
+void studentas::skMedian()
+{
+    sort(nd_.begin(), nd_.end());
+    if (nd_.size() % 2 == 0)
+    {
+        median_ = (nd_[nd_.size() / 2 - 1] + nd_[nd_.size() / 2]) / 2;
+    }
+    else
+    {
+        median_ = nd_[nd_.size() / 2];
+    }
+}
+void studentas::skfinalsuvid(){
+    final_ = vidurkis_ * 0.4 + 0.6 * egz_;
+    final_=std::ceil(final_ * 100 + 0.5)/100;
+}
+void studentas::skfinalsumed(){
+    final_ = vidurkis_ * 0.4 + 0.6 * median_;
+     final_=std::ceil(final_ * 100 + 0.5)/100;
+}
+void studentas::resizeVard(int size){
+    vard_.resize(size, ' ');
+}
+void studentas::resizePav(int size){
+    pav_.resize(size, ' ');
+}
+
+
+
+// likusios funkc.
+
+
+void genfilename(int &n, string &fileName)
 {
     cout << "kokio dydzio failas" << endl;
     cin >> n;
     string s = to_string(n);
     fileName = "studentai" + s + ".txt";
-    
 }
 void failoived(vector<studentas> &A, string fileName, std::chrono::duration<double> &runtime)
 {
@@ -32,10 +91,9 @@ void failoived(vector<studentas> &A, string fileName, std::chrono::duration<doub
     auto st = start;
 
     buffer << open_f.rdbuf();
-   
 
     getline(buffer, eil);
-    
+
     while (getline(buffer, eil))
     {
         studentas B;
@@ -43,23 +101,23 @@ void failoived(vector<studentas> &A, string fileName, std::chrono::duration<doub
 
         ss >> laik >> laik1;
         //cout << laik << " " <<laik1<< " ";
-        B.vard = laik;
-        B.pav = laik1;
+        B.setVard(laik); 
+        B.setPav(laik1);
         int num;
         while (ss >> num)
         {
-            B.nd.push_back(num);
+            B.setNd(num);
             //cout << num << " ";
         }
-        B.egz = B.nd.back();
+        B.popbackGrade();
         //cout << B.egz << endl;
-        B.nd.pop_back();
+        B.setEgz(num);
         A.push_back(B);
     }
 
     open_f.close();
-    std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now() - start; 
-    runtime+=diff;
+    std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now() - start;
+    runtime += diff;
     std::cout << "nuskaitymas uztruko " << diff.count() << " s\n";
 }
 
@@ -72,9 +130,10 @@ int generaterez()
 {
     return (rand() % 10 + 1);
 }
+
 bool SortByPav(const studentas &A, const studentas &B)
 {
-    return A.pav < B.pav;
+    return A.getPav() < B.getPav();
 }
 
 void rikiavimas(vector<studentas> &A)
@@ -83,89 +142,67 @@ void rikiavimas(vector<studentas> &A)
 }
 void vid(vector<studentas> &A)
 {
-    double sum;
+    
     for (int i = 0; i < A.size(); i++)
     {
-        sum = 0;
-        for (int j = 0; j < A[i].nd.size(); j++)
-        {
-            sum = sum + A[i].nd[j];
-        }
-        if (A[i].nd.size() != 0)
-            A[i].vidurkis = sum / A[i].nd.size();
+        A[i].skVidurki();
     }
 }
-
+void med(vector<studentas> &A)
+{
+    for (int i = 0; i < A.size(); i++)
+    {
+            A[i].skMedian();
+    }
+}
 void fin(vector<studentas> &A)
 {
+    //char ats;
+
+    /*do
+    {
+        cout << "ar norite galutini bala skaiciuot su mediana iveskite m, jei su vidurkiu iveskite v" << endl;
+        cin >> ats;
+        if (ats = 'm')
+        {
+            med(A);
+            for (int i = 0; i < A.size(); i++)
+            {
+                A[i].skfinalsumed();
+            }
+        }
+        if (ats = 'v')
+        {*/
     for (int i = 0; i < A.size(); i++)
     {
-        A[i].final = round(A[i].vidurkis * 0.4 + 0.6 * A[i].egz);
+        A[i].skfinalsuvid();
     }
+    /*}
+    } while (ats != 'm' && ats != 'v');*/
 }
-bool isgood(const studentas &A){
-    return A.final>=5;
+bool isgood(studentas &A)
+{
+    return A.getFinal() < 5;
 }
 
-/*void med(vector<studentas> &A)
-{
-    for (int i = 0; i < A.size(); i++)
-    {
-        
-            sort(A[i].nd.begin(), A[i].nd.end());
-            if (A[i].nd.size() % 2 == 0)
-            {
-                A[i].median = (A[i].nd[A[i].nd.size() / 2 - 1] + A[i].nd[A[i].nd.size() / 2]) / 2;
-            }
-            else
-            {
-                A[i].median = A[i].nd[A[i].nd.size() / 2];
-            }
-        
-    }
-}*/
-void skirs(vector<studentas> &A, vector<studentas> &B,  std::chrono::duration<double> &runtime)
+void skirs(vector<studentas> &A, vector<studentas> &B, std::chrono::duration<double> &runtime)
 {
     auto start = std::chrono::high_resolution_clock::now();
-    
-   /* for(int i=0; i<A.size(); i++)
+
+    vector<studentas>::iterator bound;
+    bound = stable_partition(A.begin(), A.end(), isgood);
+    for (vector<studentas>::iterator it = bound; it != A.end(); ++it)
     {
-        if (A[i].final >= 5)
-        {
-            B.push_back(A[i]);
-            A.erase(A.begin()+i);
-            i--;
-        }
-    }*/
 
-    vector<studentas>::iterator bound;  
-  bound = stable_partition (A.begin(), A.end(), isgood);  
-    
-   // cout << "daug uz 5:";  
-  for (vector<studentas>::iterator it=A.begin(); it!=bound; ++it)  
-  {
-     // cout << ' ' << it->final;  
-      B.push_back(*it);
-  }
-    
-  //cout << '\n';  
-  
-  //cout << "maz uz 5";  
-  int i=0;
-  for (vector<studentas>::iterator it=bound; it!=A.end(); ++it)  
-  {
-      //cout << ' ' << it->final;  
-      A[i]=*it;
-      i++;
-  }
-    A.resize(i);
-   // cout << A.size() << endl;
-  //cout << '\n';  
-
+        B.push_back(*it);
+    }
+    int index = std::distance(A.begin(), bound);
    
-    
-    std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now() - start; 
-    runtime+=diff;
+    A.resize(index);
+
+
+    std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now() - start;
+    runtime += diff;
     std::cout << "skirstymas i dvi grupes " << diff.count() << " s\n";
 }
 
@@ -174,50 +211,28 @@ void rez(vector<studentas> &A, vector<studentas> &B, std::chrono::duration<doubl
     char answ;
     string outputgood = "", outputbad = "";
     double final;
-    //cout << "ar norite gauti mediana y/n" << endl;
-    //cin >> answ;
+
     auto start = std::chrono::high_resolution_clock::now();
-   // if (answ == 'y')
-   // {
-        for (int i = 0; i < A.size(); i++)
-        {
 
-            string s = to_string(A[i].final);
-            //string s2 = to_string(A[i].median);
-            A[i].vard.resize(15, ' ');
-            A[i].pav.resize(15, ' ');
-            outputgood += A[i].vard + A[i].pav + s  + ' ' + "\n";
-        }
-        for (int i = 0; i < B.size(); i++)
-        {
-            string s = to_string(B[i].final);
-            //string s2 = to_string(B[i].median);
-            B[i].vard.resize(15, ' ');
-            B[i].pav.resize(15, ' ');
-            outputbad += B[i].vard + B[i].pav + s +' ' + "\n";
-        }
-    //}
-
-   /* else
+    for (int i = 0; i < A.size(); i++)
     {
-        
-        for (int i = 0; i < A.size(); i++)
-        {
 
-            string s = to_string(A[i].final);
-            A[i].vard.resize(15, ' ');
-            A[i].pav.resize(15, ' ');
-            outputgood += A[i].vard + A[i].pav + s + " " +"\n";
-        }
-        for (int i = 0; i < B.size(); i++)
-        {
-            string s = to_string(B[i].final);
-            B[i].vard.resize(15, ' ');
-            B[i].pav.resize(15, ' ');
-            outputbad += B[i].vard + B[i].pav + s + " " +  "\n";
-        }
-        
-    }*/
+        string s = to_string(A[i].getFinal());
+        s.resize(4, ' ');
+
+       A[i].resizeVard(20);
+       A[i].resizePav(20);
+      
+        outputgood += A[i].getVard() + A[i].getPav() + s + ' ' + "\n";
+    }
+    for (int i = 0; i < B.size(); i++)
+    {
+        string s = to_string(B[i].getFinal());
+
+        B[i].resizeVard(20);
+        B[i].resizePav(20);
+        outputbad += B[i].getVard() + B[i].getPav() + s + ' ' + "\n";
+    }
 
     ofstream out_fgood("rezultatasdauguz5.txt");
     out_fgood << outputgood;
@@ -225,8 +240,8 @@ void rez(vector<studentas> &A, vector<studentas> &B, std::chrono::duration<doubl
     ofstream out_fbad("rezultatasmazuz5.txt");
     out_fbad << outputbad;
     out_fbad.close();
-    std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now() - start; 
-    runtime+=diff;
+    std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now() - start;
+    runtime += diff;
     std::cout << "rezultato rasymas i faila " << diff.count() << " s\n";
     cout << "visas laikas " << runtime.count() << endl;
 }

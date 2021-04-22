@@ -4,6 +4,7 @@
 
 int main()
 {
+    
     int studsk, n, failodyd;
     std::chrono::duration<double> runtime;
     string fileName;
@@ -12,7 +13,7 @@ int main()
     
     
         genfilename(failodyd, fileName);
-        
+        auto start = std::chrono::high_resolution_clock::now();
         failoived(Stud, fileName, runtime); 
           
     
@@ -23,5 +24,6 @@ int main()
     fin(Stud);
     skirs(Stud, ger, runtime);
     rez(ger, Stud, runtime);
-    
+    std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now() - start;
+    cout << "programos veikimas " << diff.count() << endl;
 }

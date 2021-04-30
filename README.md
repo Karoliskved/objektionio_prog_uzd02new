@@ -84,4 +84,9 @@ Laiko palyginimas tarp v1.0 ir v1.1 naudojant skirtingus flag'us. Naudojamas vec
 | -o2 | 0.466125 | 4.92706  | 0.431455 | 4.1415 |
 | -o3 | 0.483002 | 4.88965  | 0.428308| 4.2155|
 
+v1.2 Nauji pakeitimai:
+
+- Realizuota rule of three (destruktorius, priskymo operatorius)
+- Padarytos funkcijos perdengiančios '+' ir '<<' operatorius
+
 

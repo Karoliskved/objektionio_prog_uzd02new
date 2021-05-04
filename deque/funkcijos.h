@@ -27,6 +27,7 @@ using std::sort;
 using std::stringstream;
 using std::ifstream;
 using std::ofstream;
+using std::ostream;
 using std::getline;
 using std::to_string;
 using std::exception;
@@ -45,6 +46,22 @@ private:
    
 public:
 studentas() : egz_(0) {}
+~studentas();
+studentas(const studentas& s);
+studentas& operator=(const studentas& s);
+studentas operator+(const studentas& b) {
+         studentas s;
+         s.vard_ = this->vard_ +" "+ this->pav_+" ir ";
+         s.pav_ = b.vard_ +" "+ b.pav_;
+         s.nd_.insert( s.nd_.end(), this->nd_.begin(), this->nd_.end());
+         s.nd_.insert( s.nd_.end(), b.nd_.begin(), b.nd_.end() );
+         s.egz_=(this->egz_+b.egz_)/2;     
+          /*s.skVidurki();
+         s.skMedian();
+         s.skfinalsuvid();*/
+         return s;
+      }
+friend ostream& operator<<(ostream& os, const studentas& dt);
 //inline string vard() const{return vard_;}
 //inline string pav() const{return pav_;}
 void setVard(string);

@@ -1,5 +1,4 @@
 #include "funkcijos.h"
-
 //class studenat funkc
 
 void studentas::setVard(string vard)
@@ -54,11 +53,41 @@ void studentas::resizeVard(int size){
 void studentas::resizePav(int size){
     pav_.resize(size, ' ');
 }
+studentas::~studentas() = default;
+studentas::studentas(const studentas &s)
+{
+    vard_ = s.vard_;
+    pav_ = s.pav_;
+    nd_ = s.nd_;
+    egz_ = s.egz_;
+    vidurkis_ = s.vidurkis_;
+    median_ = s.median_;
+    final_ = s.final_;
+}
+studentas& studentas::operator=(const studentas& s){
+    if (&s == this) return *this;
+    vard_ = s.vard_;
+    pav_ = s.pav_;
+    nd_ = s.nd_;
+    egz_ = s.egz_;
+    vidurkis_ = s.vidurkis_;
+    median_ = s.median_;
+    final_ = s.final_;
 
+    return *this;
+}
+
+ostream& operator<<(ostream& os, const studentas& s){
+    os << s.vard_ << s.pav_ ;
+    for(int i=0; i!=s.nd_.size(); ++i){
+        os << s.nd_[i] << " ";
+    }
+    os << s.egz_ << endl;
+ return os;
+}
 
 
 // likusios funkc.
-
 
 void genfilename(int &n, string &fileName)
 {
@@ -101,7 +130,7 @@ void failoived(vector<studentas> &A, string fileName, std::chrono::duration<doub
 
         ss >> laik >> laik1;
         //cout << laik << " " <<laik1<< " ";
-        B.setVard(laik); 
+        B.setVard(laik);
         B.setPav(laik1);
         int num;
         while (ss >> num)
@@ -142,7 +171,7 @@ void rikiavimas(vector<studentas> &A)
 }
 void vid(vector<studentas> &A)
 {
-    
+
     for (int i = 0; i < A.size(); i++)
     {
         A[i].skVidurki();
@@ -152,7 +181,7 @@ void med(vector<studentas> &A)
 {
     for (int i = 0; i < A.size(); i++)
     {
-            A[i].skMedian();
+        A[i].skMedian();
     }
 }
 void fin(vector<studentas> &A)
@@ -197,9 +226,8 @@ void skirs(vector<studentas> &A, vector<studentas> &B, std::chrono::duration<dou
         B.push_back(*it);
     }
     int index = std::distance(A.begin(), bound);
-   
-    A.resize(index);
 
+    A.resize(index);
 
     std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now() - start;
     runtime += diff;
@@ -220,9 +248,9 @@ void rez(vector<studentas> &A, vector<studentas> &B, std::chrono::duration<doubl
         string s = to_string(A[i].getFinal());
         s.resize(4, ' ');
 
-       A[i].resizeVard(20);
-       A[i].resizePav(20);
-      
+        A[i].resizeVard(20);
+        A[i].resizePav(20);
+
         outputgood += A[i].getVard() + A[i].getPav() + s + ' ' + "\n";
     }
     for (int i = 0; i < B.size(); i++)

@@ -24,6 +24,10 @@ int main()
     fin(Stud);
     skirs(Stud, ger, runtime);
     rez(ger, Stud, runtime);
-    
-    
+    list<studentas>::iterator it=Stud.begin();
+    list<studentas>::iterator it1=ger.begin();
+    studentas test=*it+*it1;
+   
+    cout << test ;
+
 }

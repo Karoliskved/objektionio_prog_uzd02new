@@ -24,6 +24,8 @@ int main()
     fin(Stud);
     skirs(Stud, ger, runtime);
     rez(ger, Stud, runtime);
+    studentas test=Stud[1]+ger[1];
     
+    cout << test ;
     
 }

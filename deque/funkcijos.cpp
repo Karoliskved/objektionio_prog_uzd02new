@@ -54,7 +54,38 @@ void studentas::resizeVard(int size){
 void studentas::resizePav(int size){
     pav_.resize(size, ' ');
 }
+studentas::~studentas() = default;
+studentas::studentas(const studentas &s)
+{
+    vard_ = s.vard_;
+    pav_ = s.pav_;
+    nd_ = s.nd_;
+    egz_ = s.egz_;
+    vidurkis_ = s.vidurkis_;
+    median_ = s.median_;
+    final_ = s.final_;
+}
+studentas& studentas::operator=(const studentas& s){
+    if (&s == this) return *this;
+    vard_ = s.vard_;
+    pav_ = s.pav_;
+    nd_ = s.nd_;
+    egz_ = s.egz_;
+    vidurkis_ = s.vidurkis_;
+    median_ = s.median_;
+    final_ = s.final_;
 
+    return *this;
+}
+
+ostream& operator<<(ostream& os, const studentas& s){
+    os << s.vard_ << s.pav_ ;
+    for(int i=0; i!=s.nd_.size(); ++i){
+        os << s.nd_[i] << " ";
+    }
+    os << s.egz_ << endl;
+ return os;
+}
 
 
 // likusios funkc.

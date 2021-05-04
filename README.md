@@ -89,4 +89,7 @@ v1.2 Nauji pakeitimai:
 - Realizuota rule of three (destruktorius, priskymo operatorius)
 - Padarytos funkcijos perdengiančios '+' ir '<<' operatorius
 
+v1.5 Nauji pakeitimai:
 
+- Sukurta bazinė klasė "zmogus" iš jos padaryta išvestinė klasė "studentas"
+- Iš klasės "studentas" į klasė studentas perkeltos šios funkcijos: getVard, getPav, setVard, setPav

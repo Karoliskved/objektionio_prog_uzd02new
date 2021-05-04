@@ -11,8 +11,8 @@ int main()
     vector<studentas> Stud, ger;
     string a;
     string b;
-    
-    srand(time(NULL));
+   // zmogus zmogus1(a, b);
+ 
     
     
         genfilename(failodyd, fileName);
@@ -29,10 +29,11 @@ int main()
     rez(ger, Stud, runtime);
     std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now() - start;
     cout << "programos veikimas " << diff.count() << endl;
-  
+    
 
     studentas test=Stud[1]+ger[1];
- 
+    
+    
     cout << test ;
 
 }

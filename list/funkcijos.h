@@ -34,18 +34,42 @@ using std::exception;
 using std::partition;
 
 
+class zmogus
+{
+protected:
+string vard_, pav_;
 
-class studentas
+zmogus(string v="", string p="") : vard_{v}, pav_{p}{}
+string getVard() const{
+    return vard_;
+}
+
+string getPav() const{
+    return pav_;
+}
+void setVard(string);
+void setPav(string);
+public:
+
+
+
+
+virtual ~zmogus();
+zmogus(const zmogus& s);
+zmogus& operator=(const zmogus& s);
+};
+
+class studentas : public zmogus
 {
 private:
-    string vard_, pav_;
+
     list<double> nd_;
-    double egz_, vidurkis_ = 0, median_ = 0;
-    double final_;
+    double egz_=0, vidurkis_ = 0, median_ = 0;
+    double final_=0;
     
    
 public:
-studentas() : egz_(0) {}
+studentas(string v="", string p="", int e=0) : zmogus{v, p}, egz_(e) {}
 ~studentas();
 studentas(const studentas& s);
 studentas& operator=(const studentas& s);
@@ -64,8 +88,7 @@ studentas operator+(const studentas& b) {
 friend ostream& operator<<(ostream& os, const studentas& dt);
 //inline string vard() const{return vard_;}
 //inline string pav() const{return pav_;}
-void setVard(string);
-void setPav(string);
+
 void setNd(double);
 void setEgz(double);
 void skVidurki();
@@ -74,21 +97,18 @@ void skfinalsuvid();
 void skfinalsumed();
 void resizeVard(int);
 void resizePav(int);
-string getVard() const{
-    return vard_;
-}
-string getPav() const{
-    return pav_;
-}
+
 void popbackGrade(){
     return nd_.pop_back();
 }
 double getFinal() const{
     return final_;
 }
-
+using zmogus::getVard;
+using zmogus::getPav;
+using zmogus::setVard;
+using zmogus::setPav;
 };
-
 
 
 

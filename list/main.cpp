@@ -9,7 +9,10 @@ int main()
     std::chrono::duration<double> runtime;
     string fileName;
     list<studentas> Stud, ger;
-    srand(time(NULL));
+    string a;
+    string b;
+  //  zmogus zmogus1(a, b);
+    
     
     
         genfilename(failodyd, fileName);
@@ -27,7 +30,6 @@ int main()
     list<studentas>::iterator it=Stud.begin();
     list<studentas>::iterator it1=ger.begin();
     studentas test=*it+*it1;
-   
     cout << test ;
 
 }

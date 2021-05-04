@@ -2,14 +2,29 @@
 
 //class studenat funkc
 
-void studentas::setVard(string vard)
+zmogus::~zmogus() = default;
+void zmogus::setVard(string vard)
 {
     vard_ = vard;
 }
-void studentas::setPav(string pav)
+void zmogus::setPav(string pav)
 {
     pav_ = pav;
 }
+zmogus::zmogus(const zmogus &s)
+{
+    vard_ = s.vard_;
+    pav_ = s.pav_;
+}
+zmogus& zmogus::operator=(const zmogus& s){
+    if (&s == this) return *this;
+    vard_ = s.vard_;
+    pav_ = s.pav_;
+  
+    return *this;
+}
+
+//class studenat funkc
 void studentas::setNd(double nd)
 {
     nd_.push_back(nd);

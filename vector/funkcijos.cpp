@@ -1,14 +1,29 @@
 #include "funkcijos.h"
-//class studenat funkc
-
-void studentas::setVard(string vard)
+//class zmogus funkc
+zmogus::~zmogus() = default;
+void zmogus::setVard(string vard)
 {
     vard_ = vard;
 }
-void studentas::setPav(string pav)
+void zmogus::setPav(string pav)
 {
     pav_ = pav;
 }
+zmogus::zmogus(const zmogus &s)
+{
+    vard_ = s.vard_;
+    pav_ = s.pav_;
+}
+zmogus& zmogus::operator=(const zmogus& s){
+    if (&s == this) return *this;
+    vard_ = s.vard_;
+    pav_ = s.pav_;
+  
+    return *this;
+}
+
+//class studentas funkc
+
 void studentas::setNd(double nd)
 {
     nd_.push_back(nd);
@@ -39,18 +54,22 @@ void studentas::skMedian()
         median_ = nd_[nd_.size() / 2];
     }
 }
-void studentas::skfinalsuvid(){
+void studentas::skfinalsuvid()
+{
     final_ = vidurkis_ * 0.4 + 0.6 * egz_;
-    final_=std::ceil(final_ * 100 + 0.5)/100;
+    final_ = std::ceil(final_ * 100 + 0.5) / 100;
 }
-void studentas::skfinalsumed(){
+void studentas::skfinalsumed()
+{
     final_ = vidurkis_ * 0.4 + 0.6 * median_;
-     final_=std::ceil(final_ * 100 + 0.5)/100;
+    final_ = std::ceil(final_ * 100 + 0.5) / 100;
 }
-void studentas::resizeVard(int size){
+void studentas::resizeVard(int size)
+{
     vard_.resize(size, ' ');
 }
-void studentas::resizePav(int size){
+void studentas::resizePav(int size)
+{
     pav_.resize(size, ' ');
 }
 studentas::~studentas() = default;

@@ -9,7 +9,10 @@ int main()
     std::chrono::duration<double> runtime;
     string fileName;
     deque<studentas> Stud, ger;
-    srand(time(NULL));
+    string a;
+    string b;
+    //zmogus zmogus1(a, b);
+   
     
     
         genfilename(failodyd, fileName);
@@ -25,7 +28,7 @@ int main()
     skirs(Stud, ger, runtime);
     rez(ger, Stud, runtime);
     studentas test=Stud[1]+ger[1];
-    
+  
     cout << test ;
     
 }

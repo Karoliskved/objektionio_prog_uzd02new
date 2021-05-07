@@ -16,24 +16,19 @@ int main()
     
     
         genfilename(failodyd, fileName);
-        auto start = std::chrono::high_resolution_clock::now();
+      //  auto start = std::chrono::high_resolution_clock::now();
         failoived(Stud, fileName, runtime); 
           
     
    
-   rikiavimas(Stud);
+   
     vid(Stud);
     //med(Stud);
     fin(Stud);
     skirs(Stud, ger, runtime);
+    rikiavimas(Stud);
+    rikiavimas(ger);
     rez(ger, Stud, runtime);
-    std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now() - start;
-    cout << "programos veikimas " << diff.count() << endl;
+   // std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now() - start;
     
-
-    studentas test=Stud[1]+ger[1];
-    
-    
-    cout << test ;
-
 }

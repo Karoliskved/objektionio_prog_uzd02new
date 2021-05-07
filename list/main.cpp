@@ -21,15 +21,13 @@ int main()
           
     
    
-    rikiavimas(Stud);
+   
     vid(Stud);
     //med(Stud);
     fin(Stud);
     skirs(Stud, ger, runtime);
+     rikiavimas(Stud);
+      rikiavimas(ger);
     rez(ger, Stud, runtime);
-    list<studentas>::iterator it=Stud.begin();
-    list<studentas>::iterator it1=ger.begin();
-    studentas test=*it+*it1;
-    cout << test ;
-
+  
 }

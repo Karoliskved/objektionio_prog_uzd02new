@@ -236,7 +236,7 @@ void skirs(deque<studentas> &A, deque<studentas> &B, std::chrono::duration<doubl
     auto start = std::chrono::high_resolution_clock::now();
 
     deque<studentas>::iterator bound;
-    bound = stable_partition(A.begin(), A.end(), isgood);
+    bound = partition(A.begin(), A.end(), isgood);
     for (deque<studentas>::iterator it = bound; it != A.end(); ++it)
     {
 

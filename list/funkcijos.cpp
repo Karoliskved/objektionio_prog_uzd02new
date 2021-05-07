@@ -252,7 +252,7 @@ void skirs(list<studentas> &A, list<studentas> &B, std::chrono::duration<double>
     auto start = std::chrono::high_resolution_clock::now();
 
     list<studentas>::iterator bound;
-    bound = stable_partition(A.begin(), A.end(), isgood);
+    bound = partition(A.begin(), A.end(), isgood);
     for (list<studentas>::iterator it = bound; it != A.end(); ++it)
     {
 

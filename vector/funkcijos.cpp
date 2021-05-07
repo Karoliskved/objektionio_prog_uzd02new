@@ -238,7 +238,7 @@ void skirs(vector<studentas> &A, vector<studentas> &B, std::chrono::duration<dou
     auto start = std::chrono::high_resolution_clock::now();
 
     vector<studentas>::iterator bound;
-    bound = stable_partition(A.begin(), A.end(), isgood);
+    bound = partition(A.begin(), A.end(), isgood);
     for (vector<studentas>::iterator it = bound; it != A.end(); ++it)
     {
 

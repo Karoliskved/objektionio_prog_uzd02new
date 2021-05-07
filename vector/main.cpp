@@ -21,18 +21,18 @@ int main()
           
     
    
-   rikiavimas(Stud);
+
     vid(Stud);
     //med(Stud);
     fin(Stud);
     skirs(Stud, ger, runtime);
+    rikiavimas(Stud);
+    rikiavimas(ger);
     rez(ger, Stud, runtime);
     std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now() - start;
-    cout << "programos veikimas " << diff.count() << endl;
+   // cout << "programos veikimas " << diff.count() << endl;
   
 
-    studentas test=Stud[1]+ger[1];
- 
-    cout << test ;
+    
 
 }

@@ -18,14 +18,14 @@ int main()
           
     
    
-    rikiavimas(Stud);
+    //rikiavimas(Stud);
     vid(Stud);
     //med(Stud);
     fin(Stud);
     skirs(Stud, ger, runtime);
+    rikiavimas(Stud);
+    rikiavimas(ger);
     rez(ger, Stud, runtime);
-    studentas test=Stud[1]+ger[1];
     
-    cout << test ;
     
 }

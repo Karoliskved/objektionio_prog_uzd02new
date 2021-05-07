@@ -116,6 +116,7 @@ void genfilename(int &n, string &fileName)
 }
 void failoived(list<studentas> &A, string fileName, std::chrono::duration<double> &runtime)
 {
+    
     ifstream open_f;
     try
     {
@@ -143,6 +144,7 @@ void failoived(list<studentas> &A, string fileName, std::chrono::duration<double
 
     while (getline(buffer, eil))
     {
+        
         studentas B;
         stringstream ss(eil);
 
@@ -160,6 +162,7 @@ void failoived(list<studentas> &A, string fileName, std::chrono::duration<double
         //cout << B.egz << endl;
         B.setEgz(num);
         A.push_back(B);
+       
     }
 
     open_f.close();
@@ -239,7 +242,7 @@ void skirs(list<studentas> &A, list<studentas> &B, std::chrono::duration<double>
     auto start = std::chrono::high_resolution_clock::now();
 
     list<studentas>::iterator bound;
-    bound = stable_partition(A.begin(), A.end(), isgood);
+    bound = partition(A.begin(), A.end(), isgood);
     for (list<studentas>::iterator it = bound; it != A.end(); ++it)
     {
 

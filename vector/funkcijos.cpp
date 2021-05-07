@@ -125,12 +125,12 @@ void failoived(vector<studentas> &A, string fileName, std::chrono::duration<doub
 
     while (getline(buffer, eil))
     {
-        studentas B;
+         studentas B;
         stringstream ss(eil);
 
         ss >> laik >> laik1;
         //cout << laik << " " <<laik1<< " ";
-        B.setVard(laik);
+        B.setVard(laik); 
         B.setPav(laik1);
         int num;
         while (ss >> num)
@@ -142,6 +142,7 @@ void failoived(vector<studentas> &A, string fileName, std::chrono::duration<doub
         //cout << B.egz << endl;
         B.setEgz(num);
         A.push_back(B);
+       
     }
 
     open_f.close();
@@ -219,7 +220,7 @@ void skirs(vector<studentas> &A, vector<studentas> &B, std::chrono::duration<dou
     auto start = std::chrono::high_resolution_clock::now();
 
     vector<studentas>::iterator bound;
-    bound = stable_partition(A.begin(), A.end(), isgood);
+    bound = partition(A.begin(), A.end(), isgood);
     for (vector<studentas>::iterator it = bound; it != A.end(); ++it)
     {
 

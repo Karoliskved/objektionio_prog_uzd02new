@@ -11,7 +11,7 @@ int main()
     vector<studentas> Stud, ger;
     string a;
     string b;
-   // zmogus zmogus1(a, b);
+   //zmogus zmogus1(a, b);
  
     
     

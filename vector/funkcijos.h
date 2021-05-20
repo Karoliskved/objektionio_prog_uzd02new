@@ -32,11 +32,11 @@ using std::to_string;
 using std::exception;
 using std::partition;
 
+//int MAC(int x, int y, int& sum);
 class zmogus
 {
 protected:
 string vard_, pav_;
-
 zmogus(string v="", string p="") : vard_{v}, pav_{p}{}
 string getVard() const{
     return vard_;
@@ -48,14 +48,12 @@ string getPav() const{
 void setVard(string);
 void setPav(string);
 public:
-
-
-
-
 virtual ~zmogus();
 zmogus(const zmogus& s);
 zmogus& operator=(const zmogus& s);
+
 };
+
 class studentas : public zmogus
 {
 private:
@@ -67,6 +65,12 @@ private:
    
 public:
 studentas(string v="", string p="", int e=0) : zmogus{v, p}, egz_(e) {}
+studentas(string vard, string pav, vector<double> nd, double egz )  {
+    vard_=vard;
+    pav_=pav;
+    nd_=nd;
+    egz_=egz;
+}
 ~studentas();
 studentas(const studentas& s);
 studentas& operator=(const studentas& s);
@@ -89,6 +93,12 @@ void popbackGrade(){
 }
 double getFinal() const{
     return final_;
+}
+double getMedian() const{
+    return median_;
+}
+double getVidurkis() const{
+    return vidurkis_;
 }
 using zmogus::getVard;
 using zmogus::getPav;

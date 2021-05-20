@@ -1,4 +1,8 @@
 #include "funkcijos.h"
+/*int MAC (int x, int y, int& sum){
+    sum+=x*y;
+    return sum;
+}*/
 //class zmogus funkc
 zmogus::~zmogus() = default;
 void zmogus::setVard(string vard)
@@ -57,12 +61,12 @@ void studentas::skMedian()
 void studentas::skfinalsuvid()
 {
     final_ = vidurkis_ * 0.4 + 0.6 * egz_;
-    final_ = std::ceil(final_ * 100 + 0.5) / 100;
+    final_ = std::floor(final_ * 100 + 0.5) / 100;
 }
 void studentas::skfinalsumed()
 {
-    final_ = vidurkis_ * 0.4 + 0.6 * median_;
-    final_ = std::ceil(final_ * 100 + 0.5) / 100;
+    final_ = median_ * 0.4 + 0.6 * egz_;
+    final_ = std::floor(final_ * 100 + 0.5) / 100;
 }
 void studentas::resizeVard(int size)
 {

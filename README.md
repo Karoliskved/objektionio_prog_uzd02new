@@ -93,3 +93,12 @@ v1.5 Nauji pakeitimai:
 
 - Sukurta bazinė klasė "zmogus" iš jos padaryta išvestinė klasė "studentas"
 - Iš klasės "studentas" į klasė studentas perkeltos šios funkcijos: getVard, getPav, setVard, setPav
+
+
+v2.0 Nauji pakeitimai:
+
+- Sukurti unit testai kurie testuoja galutinio balo skaičiavimo funkcijos
+- Prideda doxygen sukurtą diagramą
+- Sukurtas automatinis įdiegimo failas
+- stud.exe reikia vykdyti kaip administratorius
+- Priminimas: įvesties failų pavadinimai seką šia strukturą "studentas" + n n-studentų skaičius 

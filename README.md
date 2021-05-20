@@ -101,4 +101,4 @@ v2.0 Nauji pakeitimai:
 - Prideda doxygen sukurtą diagramą
 - Sukurtas automatinis įdiegimo failas
 - stud.exe reikia vykdyti kaip administratorius
-- Priminimas: įvesties failų pavadinimai seką šia strukturą "studentas" + n n-studentų skaičius 
+- Priminimas: įvesties failų pavadinimai seką šia strukturą "studentai" + n n-studentų skaičius 
